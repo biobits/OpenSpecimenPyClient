@@ -1,43 +1,48 @@
-# OpenSpecimen Python API Client
+# OpenSpecimen Python API Client 🚀🐍
 
-A lightweight, Pythonic client for interacting with the OpenSpecimen REST API.  
-This library is a clean rewrite of a C# NSwag‑generated client and supports:
+<p align="center">
+  <img src="p_logo.png" width="420" alt="OpenSpecimen Python API Client Logo">
+</p>
 
-- Session authentication (`/sessions`)
-- Executing AQL queries (`/query`)
-- Modern HTTP handling with `httpx`
-- Type‑independent JSON responses
-- Easy integration in backend or scripting workflows
+A lightweight Python client for interacting with the OpenSpecimen REST API.  
+This project is a clean and Pythonic rewrite of an auto‑generated C# NSwag client.
+
+✨ Supports  
+- 🔐 Session authentication (`/sessions`)  
+- 📡 Executing AQL queries (`/query`)  
+- ⚡ Modern HTTP handling with `httpx`  
+- 🧰 Clear error handling  
+- 📦 Simple integration into existing Python projects  
 
 Licensed under the MIT License.
 
 ---
 
-## Features
+## ⭐ Features
 
-- Simple and readable API
-- Manage sessions and API tokens
-- Execute AQL queries with minimal boilerplate
-- Clear error handling with custom exceptions
-- Built on the modern `httpx` HTTP client
-- Minimal dependencies and easily extensible
+- 🧼 Clean and readable API  
+- 🪪 Automatic session token management  
+- 🧪 Execute complex AQL queries with ease  
+- 🍃 Minimal dependencies  
+- 🔌 Easily extendable  
+- 🛟 Helpful exception messages (with HTTP status + body)  
 
 ---
 
-## Installation
+## 📦 Installation
 
-Install the required dependency:
+Install the only required dependency:
 
 bash
 pip install httpx
 
 
 
-Add the `client.py` and `api_query.py` files to your project, or package this project and install it via pip.
+Add the `client.py` and `api_query.py` files to your project, or install via pip once packaged.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 
 .
@@ -48,9 +53,9 @@ Add the `client.py` and `api_query.py` files to your project, or package this pr
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-Authenticate and run a query
+Authenticate and run a query in just a few lines:
 
 python
 from api_query import ApiQuery
@@ -72,14 +77,15 @@ query = {
 }
 
 response = api.execute_query(query)
-
 print(response)
 
 
 
 ---
 
-## Using the low-level Client class directly
+## 🧩 Using the low-level Client class directly
+
+If you prefer more control:
 
 python
 from client import Client
@@ -105,14 +111,14 @@ print(result)
 
 ---
 
-## Error Handling
+## ⚠️ Error Handling
 
-All non‑200 responses raise an `ApiException`, which includes:
+All non‑200 responses raise an `ApiException`.  
+It includes:
 
-- Status code
-- Response body (truncated if large)
-- Headers
-- Original exception if applicable
+- HTTP status code  
+- Response body  
+- Headers  
 
 Example:
 
@@ -126,26 +132,27 @@ except ApiException as ex:
 
 ---
 
-## Roadmap
+## 🗺️ Roadmap
 
 Planned improvements:
 
-- Optional Pydantic data models for strong typing
-- Async client version using `httpx.AsyncClient`
-- Packaging on PyPI
+- 🌀 Async client with `httpx.AsyncClient`
+- 🧾 Pydantic models for request/response validation
+- 📦 PyPI packaging
+- 🧪 Test suite with pytest
+- 🔄 Query helper functions
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-Contributions, bug reports, and feature requests are welcome.  
+Contributions are welcome!  
 Please open an issue or submit a pull request.
 
 ---
 
-## License
+## 📜 License
 
-This project is licensed under the MIT License.  
-See the `LICENSE` file for details.
+MIT License — you’re free to use, modify, and share this project.
 
 ---
