@@ -4,7 +4,7 @@
 
 # OpenSpecimen Python API Client 🚀🐍
 A lightweight Python client for interacting with the OpenSpecimen REST API.  
-This project is a clean and Pythonic rewrite of an auto‑generated C# NSwag client.
+This project is a clean and Pythonic rewrite of an [old C# NSwag client](https://github.com/biobits/OpenSpecimenApiClient).
 
 ✨ Supports  
 - 🔐 Session authentication (`/sessions`)  
@@ -32,9 +32,9 @@ Licensed under the MIT License.
 
 Install the only required dependency:
 
-bash
+```bash
 pip install httpx
-
+```
 
 
 Add the `client.py` and `api_query.py` files to your project, or install via pip once packaged.
@@ -42,21 +42,17 @@ Add the `client.py` and `api_query.py` files to your project, or install via pip
 ---
 
 ## 📁 Project Structure
-
-
-.
+```
 ├── client.py        # Low-level HTTP and JSON handling
 └── api_query.py     # High-level API wrapper with session handling
-
-
-
+```
 ---
 
 ## 🚀 Quick Start
 
 Authenticate and run a query in just a few lines:
 
-python
+```python
 from api_query import ApiQuery
 
 session_info = {
@@ -77,8 +73,7 @@ query = {
 
 response = api.execute_query(query)
 print(response)
-
-
+```
 
 ---
 
@@ -86,7 +81,7 @@ print(response)
 
 If you prefer more control:
 
-python
+```python
 from client import Client
 
 client = Client("https://your.openspecimen.server/openspecimen")
@@ -105,9 +100,7 @@ result = client.execute_query(
 )
 
 print(result)
-
-
-
+```
 ---
 
 ## ⚠️ Error Handling
@@ -121,13 +114,13 @@ It includes:
 
 Example:
 
-python
+```python
 try:
     result = api.execute_query(query)
 except ApiException as ex:
     print("API Error:", ex)
 
-
+```
 
 ---
 

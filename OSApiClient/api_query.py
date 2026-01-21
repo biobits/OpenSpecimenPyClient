@@ -2,7 +2,19 @@ from client import Client
 
 
 class ApiQuery:
+    """
+    A wrapper class for executing queries on the OpenSpecimen API.
+
+    Handles session management and query execution.
+    """
     def __init__(self, base_url=None, session_info=None):
+        """
+        Initialize the ApiQuery instance.
+
+        Args:
+            base_url: Optional base URL for the API client
+            session_info: Optional session info to authenticate immediately
+        """
         self.client = Client(base_url) if base_url else Client()
         self.session_token = None
 
@@ -11,11 +23,33 @@ class ApiQuery:
             self.session_token = result.get("token")
 
     def set_session(self, session_info):
+        """
+        Set the session and store the token.
+
+        Args:
+            session_info: Dict with login credentials
+
+        Returns:
+            Session response dict
+        """
         result = self.client.set_session(session_info)
         self.session_token = result.get("token")
         return result
 
     def execute_query(self, query_info, api_token=None):
+        """
+        Execute a query using the stored or provided token.
+
+        Args:
+            query_info: Dict with query details
+            api_token: Optional API token; uses stored token if not provided
+
+        Returns:
+            Query results dict
+
+        Raises:
+            ValueError: If no token is available
+        """
         token = api_token or self.session_token
         if not token:
             raise ValueError("No API token available. Authenticate first.")
