@@ -1,9 +1,8 @@
-# OpenSpecimen Python API Client 🚀🐍
-
 <p align="center">
-  <img src="p_logo.png" width="420" alt="OpenSpecimen Python API Client Logo">
+  <img src="p_logo.png" width="220" alt="OpenSpecimen Python API Client Logo">
 </p>
 
+# OpenSpecimen Python API Client 🚀🐍
 A lightweight Python client for interacting with the OpenSpecimen REST API.  
 This project is a clean and Pythonic rewrite of an auto‑generated C# NSwag client.
 
