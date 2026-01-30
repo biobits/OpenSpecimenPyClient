@@ -1,5 +1,7 @@
-import httpx
+
 import json
+
+import httpx
 
 
 class ApiException(Exception):
@@ -12,6 +14,7 @@ class ApiException(Exception):
         headers: Response headers
         inner: Inner exception if any
     """
+
     def __init__(self, message, status, response, headers, inner=None):
         """
         Initialize the exception.
@@ -34,6 +37,7 @@ class Client:
     """
     Client for interacting with OpenSpecimen API.
     """
+
     def __init__(self, base_url="https://my.openspecimen.net/openspecimen"):
         """
         Initialize the client.
@@ -41,9 +45,11 @@ class Client:
         Args:
             base_url: Base URL of the OpenSpecimen instance
         """
-        self.base_url = base_url.rstrip("/")
+        # Default route to OpenSpecimen Api ist "baseurl/rest/ng"
+        apiurl = "/rest/ng"
+        self.base_url = f"{base_url.rstrip("/")}{apiurl}"
         self.session = httpx.Client(base_url=self.base_url)
-    
+
     def set_session(self, session_info):
         """
         Set the session with login credentials.
@@ -96,6 +102,7 @@ class Client:
             try:
                 return resp.json()
             except json.JSONDecodeError as e:
-                raise ApiException("JSON decode failed", status, text, headers, e)
+                raise ApiException("JSON decode failed",
+                                   status, text, headers, e)
         else:
             raise ApiException("Unexpected status code", status, text, headers)

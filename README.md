@@ -1,3 +1,4 @@
+README.md
 <p align="center">
   <img src="p_logo.png" width="220" alt="OpenSpecimen Python API Client Logo">
 </p>
@@ -7,11 +8,12 @@ A lightweight Python client for interacting with the OpenSpecimen REST API.
 This project is a clean and Pythonic rewrite of an [old C# NSwag client](https://github.com/biobits/OpenSpecimenApiClient).
 
 ✨ Supports  
-- 🔐 Session authentication (`/sessions`)  
+- 🔐 Session authentication (`/sessions`)
 - 📡 Executing AQL queries (`/query`)  
 - ⚡ Modern HTTP handling with `httpx`  
 - 🧰 Clear error handling  
 - 📦 Simple integration into existing Python projects  
+- 🔢 Results as pandas DataFrames (optional)
 
 Licensed under the MIT License.
 
@@ -19,23 +21,23 @@ Licensed under the MIT License.
 
 ## ⭐ Features
 
-- 🧼 Clean and readable API  
-- 🪪 Automatic session token management  
-- 🧪 Execute complex AQL queries with ease  
-- 🍃 Minimal dependencies  
-- 🔌 Easily extendable  
-- 🛟 Helpful exception messages (with HTTP status + body)  
+- 🧼 Clean and readable API
+- 🪪 Automatic session token management
+- 🧪 Execute complex AQL queries with ease
+- 🍃 Minimal dependencies
+- 🔌 Easily extendable
+- 🛟 Helpful exception messages (with HTTP status + body)
+- 🔢 Optional pandas DataFrame output for query results
 
 ---
 
 ## 📦 Installation
 
-Install the only required dependency:
+Install the required dependencies:
 
 ```bash
-pip install httpx
+pip install httpx pandas
 ```
-
 
 Add the `client.py` and `api_query.py` files to your project, or install via pip once packaged.
 
@@ -71,8 +73,13 @@ query = {
     "cpId": "123"
 }
 
+# Get raw response
 response = api.execute_query(query)
 print(response)
+
+# Or get results as a pandas DataFrame
+df = api.execute_query_as_dataframe(query)
+print(df.head())
 ```
 
 ---
@@ -101,16 +108,17 @@ result = client.execute_query(
 
 print(result)
 ```
+
 ---
 
 ## ⚠️ Error Handling
 
-All non‑200 responses raise an `ApiException`.  
+All non‑200 responses raise an `ApiException`.
 It includes:
 
-- HTTP status code  
-- Response body  
-- Headers  
+- HTTP status code
+- Response body
+- Headers
 
 Example:
 
@@ -119,7 +127,6 @@ try:
     result = api.execute_query(query)
 except ApiException as ex:
     print("API Error:", ex)
-
 ```
 
 ---
@@ -138,13 +145,22 @@ Planned improvements:
 
 ## 🤝 Contributing
 
-Contributions are welcome!  
+Contributions are welcome!
 Please open an issue or submit a pull request.
 
 ---
 
 ## 📜 License
 
-MIT License — you’re free to use, modify, and share this project.
+MIT License — you're free to use, modify, and share this project.
 
 ---
+
+## ⚠️ Important Notes
+
+This client is specifically designed for executing AQL (OpenSpecimen Query Language) queries against the OpenSpecimen API. It does not support other OpenSpecimen API endpoints or operations beyond:
+- Session authentication
+- AQL query execution
+- Result retrieval (as JSON or pandas DataFrame)
+
+For other OpenSpecimen API operations, you may need to use the REST API directly or a different client implementation.

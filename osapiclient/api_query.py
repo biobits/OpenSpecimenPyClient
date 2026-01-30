@@ -1,4 +1,7 @@
-from client import Client
+
+import pandas as pd
+
+from .client import Client
 
 
 class ApiQuery:
@@ -7,6 +10,7 @@ class ApiQuery:
 
     Handles session management and query execution.
     """
+
     def __init__(self, base_url=None, session_info=None):
         """
         Initialize the ApiQuery instance.
@@ -54,3 +58,29 @@ class ApiQuery:
         if not token:
             raise ValueError("No API token available. Authenticate first.")
         return self.client.execute_query(query_info, token)
+
+    def execute_query_as_dataframe(self, query_info, api_token=None):
+        """
+        Execute a query and return results as a pandas DataFrame.
+
+        Args:
+            query_info: Dict with query details
+            api_token: Optional API token; uses stored token if not provided
+
+        Returns:
+            pandas.DataFrame with query results
+
+        Raises:
+            ValueError: If no token is available
+            KeyError: If response doesn't contain expected fields
+        """
+        response = self.execute_query(query_info, api_token)
+
+        # Extract the data from the response
+        rows = response.get('rows', [])
+        column_labels = response.get('columnLabels', [])
+
+        # Create DataFrame
+        df = pd.DataFrame(rows, columns=column_labels)
+
+        return df

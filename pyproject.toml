@@ -1,14 +1,37 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
-
-[tool.dagster]
-module_name = "osapiclient"
 
 [project]
 name = "osapiclient"
-version = "0.1.0"
-dependencies = [
-  "httpx"
+version = "0.1.4"
+description = "A lightweight Python client for interacting with the OpenSpecimen REST API"
+authors = [
+    {name = "Stefan Bartels", email = "email@biobits.eu"},
 ]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+  "httpx",
+  "pandas"
+]
+[project.urls]
+Homepage = "https://github.com/biobits/osapiclient"
+Documentation = "https://github.com/biobits/osapiclient"
+Source = "https://github.com/biobits/osapiclient"
 
